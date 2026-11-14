@@ -1,0 +1,15 @@
+original compile_exit=0 aggregate_fixture_exit=3
+CRT default=0 unqualified write=TEXT; no mode override
+load id=260 found=0 bytes=0 expected=8 oracle=FAIL
+load id=17 found=0 bytes=0 expected=7 oracle=FAIL
+load id=4096 found=0 bytes=0 expected=6 oracle=FAIL
+write three records bytes=75 expected=69 full oracle=FAIL
+initialization truncate/preserve/create=PASS; failure_mask=3
+
+binary compile_exit=0 aggregate_fixture_exit=0
+CRT default=0 unqualified write=TEXT; no mode override
+load id=260 found=1 bytes=8 expected=8 oracle=PASS
+load id=17 found=1 bytes=7 expected=7 oracle=PASS
+load id=4096 found=1 bytes=6 expected=6 oracle=PASS
+write three records bytes=69 expected=69 full oracle=PASS
+initialization truncate/preserve/create=PASS; failure_mask=0
